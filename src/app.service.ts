@@ -1,9 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import {Injectable} from '@nestjs/common';
+
+//import { NotesService } from "./note/note.service";
 
 @Injectable()
 export class AppService {
-  findAll(): Array<String> {
-    console.log("Controller...");
-    return ['Note 1', 'Note 2', 'Note 3', 'Note 4'];
-  }
+    constructor() {
+    }
 }
