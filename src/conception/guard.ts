@@ -3,9 +3,8 @@ import {CanActivate, ExecutionContext, Injectable, UnauthorizedException} from "
 @Injectable()
 export class AuthGuard implements CanActivate {
     canActivate(context: ExecutionContext): boolean {
-        console.log('guard');
         const request = context.switchToHttp().getRequest();
-        const isAuth = false;
+        const isAuth = true;
         if (!isAuth) {
             throw new UnauthorizedException("Not authorized user!");
         }
