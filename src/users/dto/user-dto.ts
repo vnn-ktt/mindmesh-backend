@@ -1,6 +1,6 @@
 import {IsBoolean, IsEmail, IsNotEmpty, IsOptional, IsString} from 'class-validator'
 
-export class UserCreateDTO {
+class UserDTO {
     @IsOptional()
     @IsString({
         message: 'The firstname should be a string.'
@@ -26,4 +26,18 @@ export class UserCreateDTO {
     blocked: boolean;
 }
 
-export type TUserUpdateDTO = Partial<UserCreateDTO>;
+class UserLoginDTO {
+    @IsNotEmpty()
+    @IsEmail()
+    email: string;
+    @IsNotEmpty()
+    @IsString({
+        message: 'The password should be a string.'
+    })
+    password: string;
+}
+
+export type TUserCreateDTO = UserDTO;
+export type TUserLoginDTO = UserLoginDTO;
+export type TUserUpdateDTO = Partial<UserDTO>;
+export type TUserDeleteDTO = Partial<UserDTO>;
