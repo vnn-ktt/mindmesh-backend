@@ -1,19 +1,12 @@
-import {Controller, Get, Query, UseGuards, UseInterceptors} from '@nestjs/common';
+import {Controller, UseInterceptors} from '@nestjs/common';
 
 import {AppService} from './app.service';
-import {ParseIntPipe} from "./conception/parse-int.pipe";
-import {AuthGuard} from "./conception/guard";
 import {LoggingInterceptor} from "./conception/interceptor";
 
 @Controller()
 @UseInterceptors(LoggingInterceptor)
 export class AppController {
-    constructor(private readonly appService: AppService) {
-    }
-
-    @Get()
-    @UseGuards(AuthGuard)
-    findAll(@Query('pageNumber', ParseIntPipe) pageNumber: number) {
-        //return this.appService.findAll();
+    constructor(
+        private readonly appService: AppService) {
     }
 }
