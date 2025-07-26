@@ -1,5 +1,5 @@
 import {BadRequestException, Injectable, UnauthorizedException} from "@nestjs/common";
-import {TUserCreateDTO, TUserLoginDTO} from "../common/dto/user-dto";
+import {UserCreateDTO, UserLoginDTO} from "../common/dto/user-dto";
 import {TUserCreateResponse, TUserLoginResponse} from "../common/types/users/t.response";
 import {UsersService} from "../users/users.service";
 import {JwtService} from "@nestjs/jwt";
@@ -12,7 +12,7 @@ export class AuthService {
         private readonly usersService: UsersService) {
     }
 
-    async register(payload: TUserCreateDTO): Promise<TUserCreateResponse> {
+    async register(payload: UserCreateDTO): Promise<TUserCreateResponse> {
         const existingUser = await this.usersService.findByEmail(payload.email);
         if (existingUser) {
             throw new BadRequestException(
@@ -24,7 +24,7 @@ export class AuthService {
         }
     }
 
-    async login(payload: TUserLoginDTO): Promise<TUserLoginResponse> {
+    async login(payload: UserLoginDTO): Promise<TUserLoginResponse> {
         const existingUser = await this.usersService.findByEmail(payload.email);
         if (!existingUser) {
             throw new UnauthorizedException(
